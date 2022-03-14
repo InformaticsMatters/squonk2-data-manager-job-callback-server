@@ -7,4 +7,4 @@ services:
       context: .
     image: informaticsmatters/data-manager-job-callback-server:latest
     ports:
-      - '8080:5000'
+    - '8080:5000'
