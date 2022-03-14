@@ -1,0 +1,10 @@
+---
+version: '3.8'
+services:
+
+  callback-server:
+    build:
+      context: .
+    image: informaticsmatters/data-manager-job-callback-server:latest
+    ports:
+      - '8080:5000'
