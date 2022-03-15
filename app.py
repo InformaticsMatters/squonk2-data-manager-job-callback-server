@@ -2,6 +2,7 @@
 """A simple Python Flask-based Job Callback server.
 Just prints the content of messages sent to the /job-callback endpoint.
 """
+from datetime import datetime
 import logging
 import pprint
 
@@ -20,13 +21,15 @@ app.logger.disabled = True
 @app.route('/job-callback', methods=['PUT'])
 def job_callback():
     """Handles callback PUT messages.
-    The payload is expected to be a JSON payload.
+    The payload is expected contain a JSON structure, which we print
+    before returning 200. If there's no payload we return 400.
     """
-    data = request.get_json(force=True)
-    if not data:
+    payload = request.get_json(force=True)
+    if not payload:
         abort(400)
 
-    print(f'--> {request.method} /{request.endpoint}')
-    _PP.pprint(data)
+    timestamp = datetime.utcnow().replace(microsecond=0)
+    print(f'\n--> {request.method} /{request.endpoint} [{timestamp} (UTC)]')
+    _PP.pprint(payload)
 
-    return {}
+    return '', 200
