@@ -1,4 +1,4 @@
-# data-manager-job-callback-server
+# squonk2-data-manager-job-callback-server
 A basic Python/Flask application (in a compact container image)
 that can be used as target for Data Manager _Job Callbacks_. It exposes
 a **PUT** endpoint at `/job-callback` that responds with a `200` and
